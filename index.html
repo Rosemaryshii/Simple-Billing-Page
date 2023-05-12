@@ -10,7 +10,10 @@
     <title>Document</title>
     <script type="text/javascript" src="jautocalc.js"></script>
     <script type="text/javascript">
+        //"$(document)" part refers to the document object, which represents the HTML document currently loaded in the browser.The ".ready()" function is a jQuery method that waits for the DOM to be fully loaded before executing the code inside its parentheses.The function() {...} is the callback function that contains the code to be executed when the DOM is ready. You can place your JavaScript/jQuery code within this function, and it will only run once the DOM is ready.
+        
         $(document).ready(function() {
+            // function autoCalcSetup(), sets up an auto-calculation feature for form cart using plugin jautoCalc
 
             function autoCalcSetup() {
 				$('form[name=cart]').jAutoCalc('destroy');
@@ -21,23 +24,29 @@
 
 
 			$('button[name=remove]').click(function(e) {
+                //This line prevents the default behavior of the button, which would typically submit a form or navigate to a new page.
 				e.preventDefault();
-
+//This line assigns the variable form to the closest parent form element of the clicked button.
 				var form = $(this).parents('form')
+                //This line removes the table row (<tr>) that contains the clicked button. It uses the parents() method with the selector 'tr' to find the nearest ancestor that is a table row, and then calls the remove() method to delete it from the DOM.
 				$(this).parents('tr').remove();
+                //It reinitializes the auto-calculation feature after a table row has been removed. This ensures that the calculations are updated and reflect the changes in the table structure.
 				autoCalcSetup();
 
 			});
 
 			$('button[name=add]').click(function(e) {
 				e.preventDefault();
-
+//This line assigns the variable $table to the closest parent table element of the clicked button. It uses the parents() method with the selector 'table' to find the nearest ancestor that is a table.
 				var $table = $(this).parents('table');
+        //This line assigns the variable $bottom to the last table row (<tr>) with the name attribute set to "line_items" within the parent table. It uses the find() method to locate the specific rows within the table.        
 				var $bottom = $table.find('tr[name=line_items]').last();
+                //This line creates a clone of the $bottom table row and assigns it to the variable $new. The clone() method is used with the argument true to indicate that the clone should include all event handlers and data associated with the original row.
 				var $new = $bottom.clone(true);
 
 				$new.jAutoCalc('destroy');
-				$new.insertBefore($bottom);
+				$new.insertBottom($bottom);
+                //his line finds all input elements of type "text" within the cloned row ($new) and sets their values to an empty string. It clears the input fields in the new row.
 				$new.find('input[type=text]').val('');
 				autoCalcSetup();
 
@@ -102,7 +111,54 @@
             <th>Item Total</th>
         </tr>
         <tr name="line_items">
-            <td><input type="text" name="S1 no" size="5"></td>
+            <td><select type="text" name="S1 no" size="1">
+                <option value=".00">4mm One way Brown</option>
+                <option value=".05">4mm one way Black</option>
+                <option value=".12">4mm one way Blue</option>
+                <option value=".18">4mm one way Green</option>
+                <option value=".28">4mm one way Gold</option>
+                <option value=".28">4mm Tinted Brown</option>
+                <option value=".28">4mm Tinted Blue</option>
+                <option value=".28">4mm Tinted Black</option>
+                <option value=".28">4mm Pinhead</option>
+                <option value=".28">5mm Pinhead</option>
+                <option value=".28">4mm Karachi</option>
+                <option value=".28">4mm Pyramid</option>
+                <option value=".28">4mm Delta</option>
+                <option value=".28">3mm Matrix White</option>
+                <option value=".28">3mm Elephant Skin Blue</option>
+                <option value=".28">3mm Elephant Skin Green</option>
+                <option value=".28">3mm Elephant Skin Yellow</option>
+                <option value=".28">3mm Elephant Skin Pink</option>
+                <option value=".28">Floral White</option>
+                <option value=".28">Floral Blue</option>
+                <option value=".28">Floral Green</option>
+                <option value=".28">Floral Yellow</option>
+                <option value=".28">Floral Grey</option>
+                <option value=".28">Floral Brown</option>
+                <option value=".28">8mm Tinted Black</option>
+                <option value=".28">5mm Nasiji Brown</option>
+                <option value=".28">4mm Nasiji Brown</option>
+                <option value=".28">5mm Nasiji White</option>
+                <option value=".28">4mm Nasiji White</option>
+                <option value=".28">5mm One way Brown</option>
+                <option value=".28">5mm one way Black</option>
+                <option value=".28">5mm one way Blue</option>
+                <option value=".28">5mm one way Green</option>
+                <option value=".28">5mm one way Gold</option>
+                <option value=".28">5mm Tinted Brown</option>
+                <option value=".28">5mm Tinted Blue</option>
+                <option value=".28">5mm Tinted Black</option>
+                <option value=".28">8mm clear</option>
+                <option value=".28">10mm clear</option>
+                <option value=".28">5mm clear</option>
+                <option value=".28">6mm clear</option>
+                <option value=".28">4mm Clear</option>
+                <option value=".28">3mm Clear</option>
+
+                <option selected value=".00">Glass Type &#x00025;</option>
+            </select>
+           </td>
             <td><input type="text" name="Item" size="20"></td>
             <td><input type="text" name="Item2" size="20"></td>
             <td><input type="text" name="qty"value="1" size="3"></td>
