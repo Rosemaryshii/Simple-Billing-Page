@@ -45,7 +45,7 @@
 				var $new = $bottom.clone(true);
 
 				$new.jAutoCalc('destroy');
-				$new.insertBottom($bottom);
+				$new.insertAfter($bottom);
                 //his line finds all input elements of type "text" within the cloned row ($new) and sets their values to an empty string. It clears the input fields in the new row.
 				$new.find('input[type=text]').val('');
 				autoCalcSetup();
@@ -112,9 +112,9 @@
         </tr>
         <tr name="line_items">
             <td><select type="text" name="S1 no" size="1">
-                <option value=".00">4mm One way Brown</option>
-                <option value=".05">4mm one way Black</option>
-                <option value=".12">4mm one way Blue</option>
+                <option value="150">4mm One way Brown</option>
+                <option value="180">4mm one way Black</option>
+                <option value="150">4mm one way Blue</option>
                 <option value=".18">4mm one way Green</option>
                 <option value=".28">4mm one way Gold</option>
                 <option value=".28">4mm Tinted Brown</option>
@@ -168,10 +168,10 @@
         <tr>
         <td colspan="1"><button name="add" class="btn btn-primary">Add Row</button></td>
         <td colspan="2">&nbsp;</td>
-        <td><strong>Subtotal</strong></td>
+        <td><strong>Total</strong></td>
         <td><input type="text" name="sub_total" value="" jAutoCalc="SUM({item_total})"></td>
     </tr>
-    <tr>
+    <!-- <tr>
         <td colspan="3">&nbsp;</td>
         <td>
             <strong>Tax &#x00025;:</strong>
@@ -185,12 +185,12 @@
             </select>
         </td>
         <td><input type="text" name="tax_total" value="" jAutoCalc="{sub_total} * {tax}"></td>
-    </tr>
-    <tr>
+    </tr> -->
+    <!-- <tr>
 <td colspan="3">&nbsp;</td>
 <td><strong>Total</strong></td>
 <td><input type="text" name="grand_tatal" value="" jAutoCalc="{sub_total} + {tax_total}"></td>
-</tr>
+</tr> -->
     </table>
 </form>
    </div> 
